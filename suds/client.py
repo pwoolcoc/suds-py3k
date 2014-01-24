@@ -186,17 +186,17 @@ class Client(object):
         clone.messages = dict(tx=None, rx=None)
         return clone
  
-    def __str__(self):
-        return unicode(self)
-        
     def __unicode__(self):
+        return str(self)
+
+    def __str__(self):
         s = ['\n']
         build = suds.__build__.split()
         s.append('Suds ( https://fedorahosted.org/suds/ )')
         s.append('  version: %s' % suds.__version__)
         s.append(' %s  build: %s' % (build[0], build[1]))
         for sd in self.sd:
-            s.append('\n\n%s' % unicode(sd))
+            s.append('\n\n%s' % str(sd))
         return ''.join(s)
 
 
@@ -663,7 +663,7 @@ class SoapClient:
         @rtype: dict
         """
         action = self.method.soap.action
-        if isinstance(action, unicode):
+        if isinstance(action, str):
             action = action.encode('utf-8')
         stock = { 'Content-Type' : 'text/xml; charset=utf-8', 'SOAPAction': action }
         result = dict(stock, **self.options.headers)

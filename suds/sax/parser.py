@@ -49,7 +49,7 @@ class Handler(ContentHandler):
  
     def startElement(self, name, attrs):
         top = self.top()
-        node = Element(unicode(name))
+        node = Element(str(name))
         for a in attrs.getNames():
             n = unicode(a)
             v = unicode(attrs.getValue(a))

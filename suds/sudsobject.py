@@ -168,10 +168,10 @@ class Object:
     def __repr__(self):
         return str(self)
 
-    def __str__(self):
-        return unicode(self).encode('utf-8')
-    
     def __unicode__(self):
+        return str(self).encode('utf-8')
+    
+    def __str__(self):
         return self.__printer__.tostr(self)
 
 

@@ -22,8 +22,7 @@ from suds import *
 from suds.sax import *
 from suds.compat import str
 
-
-class Text(unicode):
+class Text(str):
     """
     An XML text object used to represent text content.
     @ivar lang: The (optional) language flag.

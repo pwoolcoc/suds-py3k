@@ -237,10 +237,10 @@ class ServiceDefinition:
         s.append('\n\n')
         return ''.join(s)
     
-    def __str__(self):
-        return unicode(self).encode('utf-8')
-        
     def __unicode__(self):
+        return str(self).encode('utf-8')
+        
+    def __str__(self):
         try:
             return self.description()
         except Exception(e):
