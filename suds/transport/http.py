@@ -146,7 +146,7 @@ class HttpTransport(Transport):
             part = u2.__version__.split('.', 1)
             n = float('.'.join(part))
             return n
-        except Exception, e:
+        except Exception(e):
             log.exception(e)
             return 0
         

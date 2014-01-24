@@ -252,6 +252,6 @@ class Method:
                 method = getattr(plugin, self.name, None)
                 if method and callable(method):
                     method(ctx)
-            except Exception, pe:
+            except Exception(pe):
                 log.exception(pe)
         return ctx
