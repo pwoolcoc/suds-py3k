@@ -99,7 +99,7 @@ class Binding:
         @return: A collection of parameter definitions
         @rtype: [I{pdef},..]
         """
-        raise Exception, 'not implemented'
+        raise Exception('not implemented')
 
     def get_message(self, method, args, kwargs):
         """
@@ -223,7 +223,7 @@ class Binding:
             rt = dictionary.get(tag, None)
             if rt is None:
                 if node.get('id') is None:
-                    raise Exception('<%s/> not mapped to message part' % tag)
+                    raise Exception('<{0}/> not mapped to message part'.format(tag))
                 else:
                     continue
             resolved = rt.resolve(nobuiltin=True)
@@ -348,7 +348,7 @@ class Binding:
         @return: The xml content for the <body/>
         @rtype: [L{Element},..]
         """
-        raise Exception, 'not implemented'
+        raise Exception('not implemented')
     
     def headercontent(self, method):
         """
@@ -401,7 +401,7 @@ class Binding:
         @return: the body content
         @rtype: [L{Element},...]
         """
-        raise Exception, 'not implemented'
+        raise Exception('not implemented')
     
     def body(self, content):
         """

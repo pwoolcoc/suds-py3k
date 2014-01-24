@@ -145,7 +145,7 @@ class Client(object):
             root.addPrefix(prefix, uri)
             return
         if mapped[1] != uri:
-            raise Exception('"%s" already mapped as "%s"' % (prefix, mapped))
+            raise Exception('"{0}" already mapped as "{1}"'.format(prefix, mapped))
         
     def last_sent(self):
         """
@@ -327,20 +327,20 @@ class ServiceSelector:
         """
         service = None
         if not len(self.__services):
-            raise Exception, 'No services defined'
+            raise Exception('No services defined')
         if isinstance(name, int):
             try:
                 service = self.__services[name]
                 name = service.name
             except IndexError:
-                raise ServiceNotFound, 'at [%d]' % name
+                raise ServiceNotFound('at [{0}]'.format(name))
         else:
             for s in self.__services:
                 if name == s.name:
                     service = s
                     break
         if service is None:
-            raise ServiceNotFound, name
+            raise ServiceNotFound(name)
         return PortSelector(self.__client, service.ports, name)
     
     def __ds(self):
@@ -428,13 +428,13 @@ class PortSelector:
         """
         port = None
         if not len(self.__ports):
-            raise Exception, 'No ports defined: %s' % self.__qn
+            raise Exception('No ports defined: {0}'.format(self.__qn))
         if isinstance(name, int):
             qn = '%s[%d]' % (self.__qn, name)
             try:
                 port = self.__ports[name]
             except IndexError:
-                raise PortNotFound, qn
+                raise PortNotFound(qn)
         else:
             qn = '.'.join((self.__qn, name))
             for p in self.__ports:
@@ -442,7 +442,7 @@ class PortSelector:
                     port = p
                     break
         if port is None:
-            raise PortNotFound, qn
+            raise PortNotFound(qn)
         qn = '.'.join((self.__qn, port.name))
         return MethodSelector(self.__client, port.methods, qn)
     
@@ -503,7 +503,7 @@ class MethodSelector:
         m = self.__methods.get(name)
         if m is None:
             qn = '.'.join((self.__qn, name))
-            raise MethodNotFound, qn
+            raise MethodNotFound(qn)
         return Method(self.__client, m)
 
 

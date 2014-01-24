@@ -629,7 +629,7 @@ class Include(SchemaObject):
             root.set(TNS, tns)
         else:
             if self.schema.tns[1] != tns:
-                raise Exception, '%s mismatch' % TNS
+                raise Exception('{0} mismatch'.format(TNS))
                 
  
     def description(self):

@@ -319,7 +319,7 @@ class Import(WObject):
         if d.root.match(Schema.Tag, Namespace.xsdns):
             self.import_schema(definitions, d)
             return
-        raise Exception('document at "%s" is unknown' % url)
+        raise Exception('document at "{0}" is unknown'.format(url))
     
     def import_definitions(self, definitions, d):
         """ import/merge wsdl definitions """
@@ -492,7 +492,7 @@ class PortType(NamedObject):
                 qref = qualify(op.input, self.root, definitions.tns)
                 msg = definitions.messages.get(qref)
                 if msg is None:
-                    raise Exception("msg '%s', not-found" % op.input)
+                    raise Exception("msg '{0}', not-found".format(op.input))
                 else:
                     op.input = msg
             if op.output is None:
@@ -501,14 +501,14 @@ class PortType(NamedObject):
                 qref = qualify(op.output, self.root, definitions.tns)
                 msg = definitions.messages.get(qref)
                 if msg is None:
-                    raise Exception("msg '%s', not-found" % op.output)
+                    raise Exception("msg '{0}', not-found".format(op.output))
                 else:
                     op.output = msg
             for f in op.faults:
                 qref = qualify(f.message, self.root, definitions.tns)
                 msg = definitions.messages.get(qref)
                 if msg is None:
-                    raise Exception, "msg '%s', not-found" % f.message
+                    raise Exception("msg '{0}', not-found".format(f.message))
                 f.message = msg
                 
     def operation(self, name):
@@ -671,7 +671,7 @@ class Binding(NamedObject):
         ref = qualify(self.type, self.root, definitions.tns)
         port_type = definitions.port_types.get(ref)
         if port_type is None:
-            raise Exception("portType '%s', not-found" % self.type)
+            raise Exception("portType '{0}', not-found".format(self.type))
         else:
             self.type = port_type
             
@@ -686,8 +686,7 @@ class Binding(NamedObject):
         """
         ptop = self.type.operation(op.name)
         if ptop is None:
-            raise Exception, \
-                "operation '%s' not defined in portType" % op.name
+            raise Exception("operation '{0}' not defined in portType".format(op.name))
         soap = op.soap
         parts = soap.input.body.parts
         if len(parts):
@@ -723,15 +722,14 @@ class Binding(NamedObject):
             ref = qualify(mn, self.root, definitions.tns)
             message = definitions.messages.get(ref)
             if message is None:
-                raise Exception, "message'%s', not-found" % mn
+                raise Exception("message '{0}', not-found".format(mn))
             pn = header.part
             for p in message.parts:
                 if p.name == pn:
                     header.part = p
                     break
             if pn == header.part:
-                raise Exception, \
-                    "message '%s' has not part named '%s'" % (ref, pn)
+                raise Exception("message '{0}' has not part named '{1}'".format(ref, pn))
                         
     def resolvefaults(self, definitions, op):
         """
@@ -744,8 +742,7 @@ class Binding(NamedObject):
         """
         ptop = self.type.operation(op.name)
         if ptop is None:
-            raise Exception, \
-                "operation '%s' not defined in portType" % op.name
+            raise Exception("operation '{0}' not defined in portType".format(op.name))
         soap = op.soap
         for fault in soap.faults:
             for f in ptop.faults:
@@ -754,8 +751,7 @@ class Binding(NamedObject):
                     continue
             if hasattr(fault, 'parts'):
                 continue
-            raise Exception, \
-                "fault '%s' not defined in portType '%s'" % (fault.name, self.type.name)
+            raise Exception("fault '{0}' not defined in portType '{1}'".format(fault.name, self.type.name))
             
     def operation(self, name):
         """
@@ -876,7 +872,7 @@ class Service(NamedObject):
             ref = qualify(p.binding, self.root, definitions.tns)
             binding = definitions.bindings.get(ref)
             if binding is None:
-                raise Exception("binding '%s', not-found" % p.binding)
+                raise Exception("binding '{0}', not-found".format(p.binding))
             if binding.soap is None:
                 log.debug('binding "%s" - not a soap, discarded', binding.name)
                 continue
