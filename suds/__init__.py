@@ -151,4 +151,4 @@ def objid(obj):
         +':'+hex(id(obj))
 
 
-import client
+from suds import client

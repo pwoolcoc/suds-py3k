@@ -28,8 +28,8 @@ from suds.transport import TransportError, Request
 from suds.transport.https import HttpAuthenticated
 from suds.servicedefinition import ServiceDefinition
 from suds import sudsobject
-from sudsobject import Factory as InstFactory
-from sudsobject import Object
+from suds.sudsobject import Factory as InstFactory
+from suds.sudsobject import Object
 from suds.resolver import PathResolver
 from suds.builder import Builder
 from suds.wsdl import Definitions
