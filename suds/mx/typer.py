@@ -28,7 +28,7 @@ from suds.sax.text import Text
 log = getLogger(__name__)
 
 
-class Typer:
+class Typer(object):
     """
     Provides XML node typing as either automatic or manual.
     @cvar types:  A dict of class to xs type mapping.

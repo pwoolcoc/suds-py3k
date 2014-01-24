@@ -29,7 +29,7 @@ import re
 log = getLogger(__name__)
 
 
-class Date:
+class Date(object):
     """
     An XML date object.
     Supported formats:
