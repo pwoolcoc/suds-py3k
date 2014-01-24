@@ -18,7 +18,20 @@
 
 import sys
 import suds
-from setuptools import setup, find_packages
+try:
+    from setuptools import setup
+except ImportError:
+    from distutils.core import setup
+
+packages = [
+    "suds",
+    "suds.bindings",
+    "suds.sax",
+    "suds.mx",
+    "suds.xsd",
+    "suds.umx",
+    "suds.transport"
+]
 
 setup(
     name="suds",
@@ -28,6 +41,6 @@ setup(
     author_email="jortel@redhat.com",
     maintainer="Jeff Ortel",
     maintainer_email="jortel@redhat.com",
-    packages=find_packages(exclude=['tests']),
+    packages=packages,
     url="https://fedorahosted.org/suds",
 )
