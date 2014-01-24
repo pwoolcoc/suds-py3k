@@ -21,7 +21,7 @@ See I{README.txt}
 
 import suds
 import suds.metrics as metrics
-from cookielib import CookieJar
+from suds.compat import CookieJar, str, urlparse
 from suds import *
 from suds.reader import DefinitionsReader
 from suds.transport import TransportError, Request
@@ -38,7 +38,6 @@ from suds.sax.document import Document
 from suds.sax.parser import Parser
 from suds.options import Options
 from suds.properties import Unskin
-from urlparse import urlparse
 from copy import deepcopy
 from suds.plugin import PluginContainer
 from logging import getLogger

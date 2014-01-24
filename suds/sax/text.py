@@ -20,6 +20,7 @@ Contains XML text classes.
 
 from suds import *
 from suds.sax import *
+from suds.compat import str
 
 
 class Text(unicode):

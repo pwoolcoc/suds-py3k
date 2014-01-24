@@ -24,9 +24,9 @@ from tempfile import gettempdir as tmp
 from suds.transport import *
 from suds.sax.parser import Parser
 from suds.sax.element import Element
+from suds.compat import StringIO
 from datetime import datetime as dt
 from datetime import timedelta
-from cStringIO import StringIO
 from logging import getLogger
 try:
     import cPickle as pickle

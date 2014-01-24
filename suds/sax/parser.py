@@ -29,6 +29,7 @@ containing the prefix and the URI.  Eg: I{('tns', 'http://myns')}
 from logging import getLogger
 import suds.metrics
 from suds import *
+from suds.compat import str, StringIO
 from suds.sax import *
 from suds.sax.document import Document
 from suds.sax.element import Element
@@ -36,7 +37,6 @@ from suds.sax.text import Text
 from suds.sax.attribute import Attribute
 from xml.sax import make_parser, InputSource, ContentHandler
 from xml.sax.handler import feature_external_ges
-from cStringIO import StringIO
 
 log = getLogger(__name__)
 

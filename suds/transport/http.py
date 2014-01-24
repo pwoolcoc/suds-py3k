@@ -18,13 +18,11 @@
 Contains classes for basic HTTP transport implementations.
 """
 
-import urllib2 as u2
 import base64
 import socket
 from suds.transport import *
 from suds.properties import Unskin
-from urlparse import urlparse
-from cookielib import CookieJar
+from suds.compat import HTTPError, urlparse, CookieJar
 from logging import getLogger
 
 log = getLogger(__name__)
@@ -60,7 +58,7 @@ class HttpTransport(Transport):
             u2request = u2.Request(url)
             self.proxy = self.options.proxy
             return self.u2open(u2request)
-        except u2.HTTPError, e:
+        except HTTPError(e):
             raise TransportError(str(e), e.code, e.fp)
 
     def send(self, request):
@@ -78,7 +76,7 @@ class HttpTransport(Transport):
             self.getcookies(fp, u2request)
             result = Reply(200, fp.headers.dict, fp.read())
             log.debug('received:\n%s', result)
-        except u2.HTTPError, e:
+        except HTTPError(e):
             if e.code in (202,204):
                 result = None
             else:

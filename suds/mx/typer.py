@@ -20,6 +20,7 @@ Provides sx typing classes.
 
 from logging import getLogger
 from suds import *
+from suds.compat import long
 from suds.mx import *
 from suds.sax import Namespace as NS
 from suds.sax.text import Text
